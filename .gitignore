@@ -1,0 +1,5 @@
+dist
+node_modules
+*.icns
+*.js
+*.js.map
