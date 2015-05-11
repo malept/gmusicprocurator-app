@@ -39,6 +39,10 @@ dist-windows-x64: $(JS_FILES)
 	$(NMOD_BIN)/coffee -c -m $<
 
 %.icns: %.png
-	png2icns $@ $<
+	if [[ "$(shell uname -s)" = "Darwin" ]]; then \
+		makeicns -32 $< -out $@; \
+	else \
+		png2icns $@ $<; \
+	fi
 
 .PHONY: clean clean-coffee clean-dist clean-icns dist dist-linux-ia32 dist-linux-x64 dist-osx dist-windows-ia32 dist-windows-x64

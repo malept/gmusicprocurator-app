@@ -12,7 +12,8 @@ Building
 --------
 
 1. `Install and run GMusicProcurator`_ (with web UI frontend).
-2. Install icnsutils (specifically, the package that installs ``png2icns``).
+2. On OSX, install ``makeicns`` (e.g, via Homebrew). On other OSes, install
+   icnsutils (specifically, the package that installs ``png2icns``).
 3. Install `GNU Make`_ if it's not already on your system.
 4. Clone this Git repository.
 5. Run ``npm install``.
