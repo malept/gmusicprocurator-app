@@ -12,12 +12,13 @@ Building
 --------
 
 1. `Install and run GMusicProcurator`_ (with web UI frontend).
-2. On OSX, install ``makeicns`` (e.g, via Homebrew). On other OSes, install
+2. Install librsvg (specifically on Debian/Ubuntu, ``librsvg2-bin``).
+3. On OSX, install ``makeicns`` (e.g, via Homebrew). On other OSes, install
    icnsutils (specifically, the package that installs ``png2icns``).
-3. Install `GNU Make`_ if it's not already on your system.
-4. Clone this Git repository.
-5. Run ``npm install``.
-6. Build the app for your OS and architecture, see the ``Makefile`` for the
+4. Install `GNU Make`_ if it's not already on your system.
+5. Clone this Git repository.
+6. Run ``npm install``.
+7. Build the app for your OS and architecture, see the ``Makefile`` for the
    specific target. For example, for Linux on a 64 bit architecture, run
    ``make dist-linux-x64``. If you run ``make`` without a target, distributions
    for all supported OSes will be built.

@@ -10,7 +10,7 @@ app.on 'window-all-closed', ->
   app.quit() unless process.platform is 'darwin'
 
 app.on 'ready', ->
-  icon = NativeImage.createFromPath("#{__dirname}/icon.png")
+  icon = NativeImage.createFromPath("#{__dirname}/icon-48.png")
   options =
     icon: icon
     width: 1280
