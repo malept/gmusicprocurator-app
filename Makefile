@@ -46,7 +46,7 @@ dist-windows-x64: $(JS_FILES) $(APP_ICON_FILE)
 	$(NMOD_BIN)/coffee -c -m $<
 
 src/icon-%.png: src/icon.svg
-	rsvg -a -w $(shell echo $@ | cut -d- -f2 | cut -d. -f1) $< $@
+	rsvg-convert -a -w $(shell echo $@ | cut -d- -f2 | cut -d. -f1) -o $@ $<
 
 %.icns: $(PNG_FILES)
 	if [[ "$(shell uname -s)" = "Darwin" ]]; then \
