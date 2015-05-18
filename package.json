@@ -7,6 +7,7 @@
   "private": true,
   "devDependencies": {
     "coffee-script": "^1.9.2",
+    "coffeelint": "^1.9.7",
     "electron-packager": "^4.0.1",
     "electron-prebuilt": "^0.25.1"
   }
