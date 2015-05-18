@@ -13,6 +13,4 @@ ipc.on 'volume', (message) ->
   switch message
     when 'up' then player.adjust_volume(5)
     when 'down' then player.adjust_volume(-5)
-    when 'mute'
-      # TODO unmute
-      player.adjust_volume(-100)
+    when 'mute' then player.toggle_mute()
