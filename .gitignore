@@ -1,6 +1,7 @@
 dist
 node_modules
 *.icns
+*.ico
 *.js
 *.js.map
 *.png
