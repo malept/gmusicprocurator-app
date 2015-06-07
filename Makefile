@@ -1,6 +1,6 @@
 DISTDIR ?= dist
 ELECTRON_VERSION = $(shell npm list --parseable --long electron-prebuilt | cut -d: -f 2 | cut -d@ -f2 | cut -d- -f1)
-ELECTRON_PACKAGER = $(NMOD_BIN)/electron-packager . GMusicProcurator --version $(ELECTRON_VERSION) --ignore '\.git'
+ELECTRON_PACKAGER = $(NMOD_BIN)/electron-packager . GMusicProcurator --version $(ELECTRON_VERSION) --ignore '$(DISTDIR)/'
 ICNS_FILE = src/icon.icns
 ICO_FILE = src/icon.ico
 PNG_SIZES = 512 256 128 48 32
