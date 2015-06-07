@@ -16,7 +16,6 @@ addons:
     - wine
 
 script:
-- node_modules/.bin/coffeelint src
 # See above for dependency
 # - make
 - make travis

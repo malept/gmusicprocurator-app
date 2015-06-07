@@ -9,10 +9,13 @@ APP_ICON_FILE = src/icon-48.png
 JS_FILES = $(patsubst %.coffee,%.js,$(shell ls src/*.coffee))
 NMOD_BIN = node_modules/.bin
 
-all: dist
+all: test dist
+
+test:
+	$(NMOD_BIN)/coffeelint src
 
 # Because Travis can't install icnsutils/icoutils in container mode yet
-travis: dist-linux-x64 dist-linux-ia32
+travis: test dist-linux-x64 dist-linux-ia32
 
 clean: clean-dist clean-coffee clean-icns clean-png
 
