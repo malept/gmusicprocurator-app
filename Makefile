@@ -2,6 +2,7 @@ DISTDIR ?= dist
 ELECTRON_VERSION = $(shell npm list --parseable --long electron-prebuilt | cut -d: -f 2 | cut -d@ -f2 | cut -d- -f1)
 ELECTRON_PACKAGER = $(NMOD_BIN)/electron-packager . GMusicProcurator --version $(ELECTRON_VERSION) --ignore '\.git'
 ICNS_FILE = src/icon.icns
+ICO_FILE = src/icon.ico
 PNG_SIZES = 512 256 128 48 32
 GENERATED_PNG_FILES = $(foreach size,$(PNG_SIZES),src/icon-$(size).png)
 PNG_FILES = $(GENERATED_PNG_FILES) src/icon-16.png
@@ -42,17 +43,20 @@ dist-linux-x64: $(JS_FILES) $(APP_ICON_FILE)
 dist-osx: $(JS_FILES) $(ICNS_FILE)
 	$(ELECTRON_PACKAGER) --out $(DISTDIR)/osx --platform darwin --arch x64 --icon $(ICNS_FILE)
 
-dist-windows-ia32: $(JS_FILES) $(APP_ICON_FILE)
-	$(ELECTRON_PACKAGER) --out $(DISTDIR)/win/ia32 --platform win32 --arch ia32 --icon $(APP_ICON_FILE)
+dist-windows-ia32: $(JS_FILES) $(ICO_FILE)
+	$(ELECTRON_PACKAGER) --out $(DISTDIR)/win/ia32 --platform win32 --arch ia32 --icon $(ICO_FILE)
 
-dist-windows-x64: $(JS_FILES) $(APP_ICON_FILE)
-	$(ELECTRON_PACKAGER) --out $(DISTDIR)/win/x64 --platform win32 --arch x64 --icon $(APP_ICON_FILE)
+dist-windows-x64: $(JS_FILES) $(ICO_FILE)
+	$(ELECTRON_PACKAGER) --out $(DISTDIR)/win/x64 --platform win32 --arch x64 --icon $(ICO_FILE)
 
 %.js %.js.map: %.coffee
 	$(NMOD_BIN)/coffee -c -m $<
 
 src/icon-%.png: src/icon.svg
 	rsvg-convert -a -w $(shell echo $@ | cut -d- -f2 | cut -d. -f1) -o $@ $<
+
+%.ico: $(PNG_FILES)
+	icotool -c -o $@ $+
 
 %.icns: $(PNG_FILES)
 	if test "$(shell uname -s)" = "Darwin"; then \
