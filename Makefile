@@ -37,10 +37,10 @@ dist-osx: $(JS_FILES) $(ICNS_FILE)
 	$(ELECTRON_PACKAGER) --out $(DISTDIR)/osx --platform darwin --arch x64 --icon $(ICNS_FILE)
 
 dist-windows-ia32: $(JS_FILES) $(APP_ICON_FILE)
-	$(ELECTRON_PACKAGER) --out $(DISTDIR)/win/ia32 --platform win32 --arch ia32
+	$(ELECTRON_PACKAGER) --out $(DISTDIR)/win/ia32 --platform win32 --arch ia32 --icon $(APP_ICON_FILE)
 
 dist-windows-x64: $(JS_FILES) $(APP_ICON_FILE)
-	$(ELECTRON_PACKAGER) --out $(DISTDIR)/win/x64 --platform win32 --arch x64
+	$(ELECTRON_PACKAGER) --out $(DISTDIR)/win/x64 --platform win32 --arch x64 --icon $(APP_ICON_FILE)
 
 %.js %.js.map: %.coffee
 	$(NMOD_BIN)/coffee -c -m $<
