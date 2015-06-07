@@ -11,8 +11,8 @@ NMOD_BIN = node_modules/.bin
 
 all: dist
 
-# Because Travis can't install icnsutils in container mode yet
-travis: dist-linux-x64 dist-linux-ia32 dist-windows-x64 dist-windows-ia32
+# Because Travis can't install icnsutils/icoutils in container mode yet
+travis: dist-linux-x64 dist-linux-ia32
 
 clean: clean-dist clean-coffee clean-icns clean-png
 

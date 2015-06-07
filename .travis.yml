@@ -9,6 +9,8 @@ addons:
     packages:
 # Depends on https://github.com/travis-ci/travis-ci/issues/3884
 #     - icnsutils
+# Depends on https://github.com/travis-ci/travis-ci/issues/4041
+#     - icoutils
     - librsvg2-bin
     - wine
 
