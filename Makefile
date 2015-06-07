@@ -18,7 +18,7 @@ test:
 # Because Travis can't install icnsutils/icoutils in container mode yet
 travis: test dist-linux-x64 dist-linux-ia32
 
-clean: clean-dist clean-coffee clean-icns clean-png
+clean: clean-dist clean-coffee clean-icns clean-ico clean-png
 
 clean-coffee:
 	rm -f $(JS_FILES)
@@ -28,6 +28,9 @@ clean-dist:
 
 clean-icns:
 	rm -f $(ICNS_FILE)
+
+clean-ico:
+	rm -f $(ICO_FILE)
 
 clean-png:
 	rm -f $(GENERATED_PNG_FILES)
@@ -65,4 +68,4 @@ src/icon-%.png: src/icon.svg
 		png2icns $@ $+; \
 	fi
 
-.PHONY: clean clean-coffee clean-dist clean-icns clean-png dist dist-linux-ia32 dist-linux-x64 dist-osx dist-windows-ia32 dist-windows-x64
+.PHONY: clean clean-coffee clean-dist clean-icns clean-ico clean-png dist dist-linux-ia32 dist-linux-x64 dist-osx dist-windows-ia32 dist-windows-x64
