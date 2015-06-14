@@ -9,6 +9,6 @@
     "coffee-script": "^1.9.2",
     "coffeelint": "^1.10.0",
     "electron-packager": "^4.1.2",
-    "electron-prebuilt": "^0.27.2"
+    "electron-prebuilt": "^0.26.0"
   }
 }
