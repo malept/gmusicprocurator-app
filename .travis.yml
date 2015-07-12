@@ -8,13 +8,10 @@ cache:
 addons:
   apt:
     packages:
-# Depends on https://github.com/travis-ci/travis-ci/issues/4041
-#     - icoutils
+    - icoutils
     - icnsutils
     - librsvg2-bin
     - wine
 
 script:
-# See above for dependency
-# - make
-- make travis
+- make

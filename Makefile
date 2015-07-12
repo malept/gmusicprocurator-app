@@ -15,9 +15,6 @@ all: test dist
 test:
 	$(NMOD_BIN)/coffeelint src
 
-# Because Travis can't install icoutils in container mode yet
-travis: test dist-linux-x64 dist-linux-ia32 dist-osx
-
 clean: clean-dist clean-coffee clean-icns clean-ico clean-png
 
 clean-coffee:
