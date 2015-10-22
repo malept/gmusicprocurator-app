@@ -2,6 +2,9 @@
 GMusicProcurator (the App)
 ==========================
 
+.. image:: https://travis-ci.org/malept/gmusicprocurator-app.svg?branch=master
+    :target: https://travis-ci.org/malept/gmusicprocurator-app
+
 Embeds the web frontend of a running GMusicProcurator_ web application inside
 of an Electron_ shell.
 
