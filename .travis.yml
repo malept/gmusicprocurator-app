@@ -1,5 +1,5 @@
 language: node_js
-node_js: '0.10'
+node_js: '0.12'
 sudo: false
 cache:
   - apt
@@ -11,6 +11,7 @@ addons:
     - icoutils
     - icnsutils
     - librsvg2-bin
+    - nsis
     - wine
 
 script:

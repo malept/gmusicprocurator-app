@@ -1,0 +1,6 @@
+{
+  "win" : {
+    "title": "GMusicProcurator",
+    "icon": "src/installer.ico"
+  }
+}
