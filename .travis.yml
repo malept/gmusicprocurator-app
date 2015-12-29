@@ -2,9 +2,9 @@ language: node_js
 node_js: '0.12'
 sudo: false
 cache:
-  - apt
-  - directories:
-    - node_modules
+- apt
+- directories:
+  - node_modules
 addons:
   apt:
     packages:
