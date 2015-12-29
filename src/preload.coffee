@@ -2,7 +2,7 @@ electron      = require 'electron'
 
 ipc           = electron.ipcRenderer
 
-ipc.on 'player', (message) ->
+ipc.on 'player', (_event, message) ->
   player = window.AlpacAudio.player
   switch message
     when 'stop' then player.stop()
@@ -10,7 +10,7 @@ ipc.on 'player', (message) ->
     when 'previous' then player.previous_track()
     when 'next' then player.next_track()
 
-ipc.on 'volume', (message) ->
+ipc.on 'volume', (_event, message) ->
   player = window.AlpacAudio.player
   switch message
     when 'up' then player.adjust_volume(5)
