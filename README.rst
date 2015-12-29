@@ -9,7 +9,7 @@ Embeds the web frontend of a running GMusicProcurator_ web application inside
 of an Electron_ shell.
 
 .. _GMusicProcurator: https://gmusicprocurator.readthedocs.org/
-.. _Electron: https://electron.github.io/
+.. _Electron: http://electron.atom.io/
 
 Building
 --------
