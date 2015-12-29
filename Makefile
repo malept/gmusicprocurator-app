@@ -37,6 +37,9 @@ clean-ico:
 clean-png:
 	rm -f $(GENERATED_PNG_FILES)
 
+run: test $(JS_FILES) $(APP_ICON_FILE) $(ICNS_FILE) $(ICO_FILE)
+	$(NMOD_BIN)/electron .
+
 dist: dist-linux-x64 dist-linux-ia32 dist-osx dist-windows-x64 dist-windows-ia32
 
 installer: installer-windows-ia32 installer-windows-x64
@@ -83,4 +86,4 @@ $(INSTALLER_ICO_FILE): $(INSTALLER_PNG_FILES)
 		png2icns $@ $+; \
 	fi
 
-.PHONY: clean clean-coffee clean-dist clean-icns clean-ico clean-png dist dist-linux-ia32 dist-linux-x64 dist-osx dist-windows-ia32 dist-windows-x64 installer installer-windows-ia32 installer-windows-x64 test
+.PHONY: clean clean-coffee clean-dist clean-icns clean-ico clean-png run dist dist-linux-ia32 dist-linux-x64 dist-osx dist-windows-ia32 dist-windows-x64 installer installer-windows-ia32 installer-windows-x64 test
