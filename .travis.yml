@@ -5,6 +5,7 @@ cache:
 - apt
 - directories:
   - node_modules
+  - $HOME/.electron
 addons:
   apt:
     packages:
