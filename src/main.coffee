@@ -1,10 +1,10 @@
-app             = require 'app'
-BrowserWindow   = require 'browser-window'
-global_shortcut = require 'global-shortcut'
-NativeImage     = require 'native-image'
-process         = require 'process'
+electron        = require 'electron'
 
-require('crash-reporter').start()
+app             = electron.app
+BrowserWindow   = electron.BrowserWindow
+global_shortcut = electron.globalShortcut
+NativeImage     = require 'native-image'
+
 main_window = null
 
 app.on 'window-all-closed', ->
@@ -22,7 +22,7 @@ app.on 'ready', ->
 
   wants_dev_tools = -> process.argv.indexOf('--dev-tools') isnt -1
 
-  main_window.loadUrl('http://localhost:5000/')
+  main_window.loadURL('http://localhost:5000/')
   main_window.openDevTools(detach: true) if wants_dev_tools()
 
   # Media keys

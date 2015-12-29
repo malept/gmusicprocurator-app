@@ -9,8 +9,8 @@
     "coffee-script": "^1.9.2",
     "coffeelint": "^1.10.0",
     "electron-builder": "^2.0.2",
-    "electron-packager": "^5.1.0",
-    "electron-prebuilt": "^0.34.0"
+    "electron-packager": "^5.2.0",
+    "electron-prebuilt": "^0.36.0"
   },
   "engines": {
     "node": ">=0.12.0"
