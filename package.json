@@ -1,5 +1,6 @@
 {
   "name": "gmusicprocurator-app",
+  "productName": "GMusicProcurator",
   "version": "0.0.1",
   "description": "Desktop integration app for GMusicProcurator",
   "repository": "malept/gmusicprocurator-app",
@@ -9,7 +10,7 @@
     "coffee-script": "^1.9.2",
     "coffeelint": "^1.10.0",
     "electron-builder": "^2.0.2",
-    "electron-packager": "^5.2.0",
+    "electron-packager": "^5.2.0, >= 5.2.1",
     "electron-prebuilt": "^0.36.0"
   },
   "engines": {
