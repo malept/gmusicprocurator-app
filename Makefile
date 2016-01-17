@@ -2,7 +2,7 @@ DISTDIR ?= dist
 APP_NAME = GMusicProcurator
 APP_VERSION = $(shell python -c 'import json; print(json.load(open("package.json"))["version"])')
 BUILD_VERSION = $(APP_VERSION).$(shell date --date=@`git show --format='format:%at' -q` +%Y%m%d%H%M%S).$(shell git rev-parse HEAD | cut -c-8)
-ELECTRON_PACKAGER = $(NMOD_BIN)/electron-packager . --ignore '$(DISTDIR)/' --app-version=$(APP_VERSION) --build-version=$(BUILD_VERSION)
+ELECTRON_PACKAGER = $(NMOD_BIN)/electron-packager . --ignore '$(DISTDIR)/' --app-version=$(APP_VERSION) --build-version=$(BUILD_VERSION) --prune
 ELECTRON_BUILDER = $(NMOD_BIN)/electron-builder --config=electron-builder.json
 ICNS_FILE = src/icon.icns
 ICO_FILE = src/icon.ico
