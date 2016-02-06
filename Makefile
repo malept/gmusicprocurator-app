@@ -14,7 +14,7 @@ INSTALLER_PNG_SIZES = 256 128 48 32 16
 INSTALLER_PNG_FILES = $(foreach size,$(INSTALLER_PNG_SIZES),src/icon-$(size).png)
 APP_ICON_FILE = src/icon-48.png
 JS_FILES = $(patsubst %.coffee,%.js,$(shell ls src/*.coffee))
-NMOD_BIN = node_modules/.bin
+NMOD_BIN = $(shell npm bin)
 
 all: test dist installer
 
