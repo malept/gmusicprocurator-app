@@ -13,6 +13,14 @@ addons:
     - icnsutils
     - nsis
     - wine
+    # Blocked by https://github.com/travis-ci/apt-package-whitelist/issues/588
+    # - genisoimage
+env:
+  global:
+  - DMG=/tmp/libdmg-hfsplus/build/dmg/dmg
+  - GENISOIMAGE=/tmp/genisoimage/usr/bin/genisoimage
+
+before_install: ci/before_install.sh
 
 script:
 - make
