@@ -82,7 +82,7 @@ $(OSX_UNCOMPRESSED_DMG): dist-osx
 	$(GENISOIMAGE) -V "$(APP_NAME) $(APP_VERSION)" -D -no-pad -r -apple -o $@ $(DISTDIR)/osx/$(APP_NAME)-darwin-x64/
 
 $(OSX_DMG): $(OSX_UNCOMPRESSED_DMG)
-	$(DMG) dmg $(OSX_UNCOMPRESSED_DMG) $(OSX_DMG)
+	$(DMG) dmg $< $@
 
 installer-windows-ia32: dist-windows-ia32 $(INSTALLER_ICO_FILE)
 	$(ELECTRON_BUILDER) $(DISTDIR)/win/ia32/$(APP_NAME)-win32-ia32 --platform=win --out=$(DISTDIR)/win/ia32
