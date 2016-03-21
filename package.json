@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "description": "Desktop integration app for GMusicProcurator",
   "repository": "malept/gmusicprocurator-app",
+  "license": "GPL-3.0+",
   "main": "src/main.js",
   "private": true,
   "devDependencies": {
