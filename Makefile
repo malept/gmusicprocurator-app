@@ -1,17 +1,49 @@
 DISTDIR ?= dist
-APP_NAME = GMusicProcurator
+APP_NAME = $(shell python -c 'import json; print(json.load(open("package.json"))["productName"])')
+APP_UNIX_NAME = $(shell python -c 'import json; print(json.load(open("package.json"))["name"])')
+APP_LICENSE = $(shell python -c 'import json; print(json.load(open("package.json"))["license"])')
+APP_AUTHOR = $(shell python -c 'import json; print(json.load(open("package.json"))["author"])')
+APP_DESC = $(shell python -c 'import json; print(json.load(open("package.json"))["description"])')
+APP_URL = $(shell python -c 'import json; print(json.load(open("package.json"))["homepage"])')
 APP_VERSION = $(shell python -c 'import json; print(json.load(open("package.json"))["version"])')
 BUILD_VERSION = $(APP_VERSION).$(shell date --date=@`git show --format='format:%at' -q` +%Y%m%d%H%M%S).$(shell git rev-parse HEAD | cut -c-8)
 NMOD_BIN = $(shell npm bin)
 
 ELECTRON_PACKAGER = $(NMOD_BIN)/electron-packager . \
-	--ignore '\b(electron-builder\.json|Gemfile.*|Makefile|\.travis.yml|$(DISTDIR)|ci)(/|$$)' \
+	--ignore '\b(electron-builder\.json|Gemfile.*|Makefile|\.travis.yml|$(DISTDIR)|ci|pkg)(/|$$)' \
 	--app-version=$(APP_VERSION) \
 	--build-version=$(BUILD_VERSION) \
 	--prune
 ELECTRON_BUILDER = $(NMOD_BIN)/electron-builder --config=electron-builder.json
 GENISOIMAGE ?= genisoimage
 DMG ?= dmg
+FPM = bundle exec fpm \
+	-s dir \
+	--name $(APP_UNIX_NAME) \
+	--version $(APP_VERSION) \
+	--description "$(APP_DESC)" \
+	--license $(APP_LICENSE) \
+	--url $(APP_URL) \
+	--maintainer "$(APP_AUTHOR)" \
+	--package $@ \
+	-C $<
+FPM_FILES = .=/opt/$(APP_UNIX_NAME) \
+	../../../pkg/gmusicprocurator.desktop=/usr/share/applications/ \
+	../../../$(APP_ICON_FILE)=/usr/share/icons/hicolor/48x48/apps/gmusicprocurator.png \
+	../../../src/icon-16.png=/usr/share/icons/hicolor/16x16/apps/gmusicprocurator.png \
+	../../../src/icon.svg=/usr/share/icons/hicolor/scalable/apps/gmusicprocurator.svg
+FPM_DEB = $(FPM) -t deb \
+	--depends libgpg-error0 \
+	--depends libgtk2.0-0 \
+	--depends libgconf2-4 \
+	--depends libnss3 \
+	--depends libnotify4 \
+	--depends libdbus-1-3 \
+	--depends libasound2 \
+	--depends libcups2
+FPM_RPM = $(FPM) -t rpm \
+	--rpm-os linux
+FPM_TAR = $(FPM) -t tar
 
 DISTDIR_LINUX = $(DISTDIR)/linux
 DISTDIR_OSX = $(DISTDIR)/osx
@@ -21,6 +53,12 @@ PKG_LINUX_X64 = $(DISTDIR_LINUX)/$(APP_NAME)-linux-x64
 PKG_OSX = $(DISTDIR_OSX)/$(APP_NAME)-darwin-x64
 PKG_WIN_IA32 = $(DISTDIR_WIN)/$(APP_NAME)-win32-ia32
 PKG_WIN_X64 = $(DISTDIR_WIN)/$(APP_NAME)-win32-x64
+LINUX_DEB_IA32 = $(DISTDIR_LINUX)/$(APP_UNIX_NAME)_$(APP_VERSION)_i386.deb
+LINUX_DEB_X64 = $(DISTDIR_LINUX)/$(APP_UNIX_NAME)_$(APP_VERSION)_amd64.deb
+LINUX_RPM_IA32 = $(DISTDIR_LINUX)/$(APP_UNIX_NAME)-$(APP_VERSION)-1.i686.rpm
+LINUX_RPM_X64 = $(DISTDIR_LINUX)/$(APP_UNIX_NAME)-$(APP_VERSION)-1.x86_64.rpm
+LINUX_TAR_IA32 = $(DISTDIR_LINUX)/$(APP_NAME)-$(APP_VERSION)-i686-bin.tar.xz
+LINUX_TAR_X64 = $(DISTDIR_LINUX)/$(APP_NAME)-$(APP_VERSION)-amd64-bin.tar.xz
 OSX_UNCOMPRESSED_DMG = $(DISTDIR_OSX)/$(APP_NAME)-$(APP_VERSION)-uncompressed.dmg
 OSX_DMG = $(DISTDIR_OSX)/$(APP_NAME)-$(APP_VERSION).dmg
 WIN_EXE_IA32 = $(DISTDIR_WIN)/ia32/$(APP_NAME)\ Setup.exe
@@ -58,7 +96,10 @@ clean-ico:
 clean-png:
 	rm -f $(GENERATED_PNG_FILES)
 
-clean-installer: clean-installer-osx clean-installer-windows
+clean-installer: clean-installer-linux clean-installer-osx clean-installer-windows
+
+clean-installer-linux:
+	rm -f $(LINUX_DEB_IA32) $(LINUX_DEB_X64) $(LINUX_RPM_IA32) $(LINUX_RPM_X64) $(LINUX_TAR_IA32) $(LINUX_TAR_X64)
 
 clean-installer-osx:
 	rm -f $(OSX_UNCOMPRESSED_DMG) $(OSX_DMG)
@@ -71,7 +112,7 @@ run: test $(JS_FILES) $(APP_ICON_FILE) $(ICNS_FILE) $(ICO_FILE)
 
 dist: dist-linux-x64 dist-linux-ia32 dist-osx dist-windows-x64 dist-windows-ia32
 
-installer: installer-osx installer-windows-ia32 installer-windows-x64
+installer: installer-linux-ia32 installer-linux-x64 installer-osx installer-windows-ia32 installer-windows-x64
 
 dist-linux-ia32: $(PKG_LINUX_IA32)
 
@@ -97,6 +138,28 @@ dist-windows-x64: $(PKG_WIN_X64)
 
 $(PKG_WIN_X64): $(JS_FILES) $(ICO_FILE)
 	$(ELECTRON_PACKAGER) --out $(DISTDIR_WIN) --platform win32 --arch x64 --icon $(ICO_FILE)
+
+installer-linux-ia32: $(LINUX_DEB_IA32) $(LINUX_RPM_IA32) $(LINUX_TAR_IA32)
+
+$(LINUX_DEB_IA32): $(PKG_LINUX_IA32)
+	$(FPM_DEB) -a i386 $(FPM_FILES)
+
+$(LINUX_RPM_IA32): $(PKG_LINUX_IA32)
+	$(FPM_RPM) -a i686 $(FPM_FILES)
+
+$(LINUX_TAR_IA32): $(PKG_LINUX_IA32)
+	$(FPM_TAR) $(FPM_FILES)
+
+installer-linux-x64: $(LINUX_DEB_X64) $(LINUX_RPM_X64) $(LINUX_TAR_X64)
+
+$(LINUX_DEB_X64): $(PKG_LINUX_X64)
+	$(FPM_DEB) -a amd64 $(FPM_FILES)
+
+$(LINUX_RPM_X64): $(PKG_LINUX_X64)
+	$(FPM_RPM) -a x86_64 $(FPM_FILES)
+
+$(LINUX_TAR_X64): $(PKG_LINUX_X64)
+	$(FPM_TAR) $(FPM_FILES)
 
 installer-osx: $(OSX_DMG)
 
@@ -137,4 +200,4 @@ $(INSTALLER_ICO_FILE): $(INSTALLER_PNG_FILES)
 		png2icns $@ $+; \
 	fi
 
-.PHONY: clean clean-coffee clean-dist clean-icns clean-ico clean-png clean-installer clean-installer-osx clean-installer-windows run dist dist-linux-ia32 dist-linux-x64 dist-osx dist-windows-ia32 dist-windows-x64 installer installer-osx installer-windows-ia32 installer-windows-x64 test
+.PHONY: clean clean-coffee clean-dist clean-icns clean-ico clean-png clean-installer clean-installer-linux clean-installer-osx clean-installer-windows run dist dist-linux-ia32 dist-linux-x64 dist-osx dist-windows-ia32 dist-windows-x64 installer installer-linux-ia32 installer-linux-x64 installer-osx installer-windows-ia32 installer-windows-x64 test

@@ -4,6 +4,8 @@
   "version": "0.0.1",
   "description": "Desktop integration app for GMusicProcurator",
   "repository": "malept/gmusicprocurator-app",
+  "homepage": "https://github.com/malept/gmusicprocurator-app#readme",
+  "author": "Mark Lee",
   "license": "GPL-3.0+",
   "main": "src/main.js",
   "private": true,

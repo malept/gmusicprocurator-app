@@ -3,18 +3,21 @@ node_js: "5"
 sudo: false
 cache:
 - apt
+- bundler
 - directories:
   - node_modules
   - $HOME/.electron
 addons:
   apt:
     packages:
+    # Blocked by https://github.com/travis-ci/apt-package-whitelist/issues/588
+    # Handled in ci/before_install.sh + env.global in the meantime
+    # - genisoimage
     - icoutils
     - icnsutils
+    - rpm
     - nsis
     - wine
-    # Blocked by https://github.com/travis-ci/apt-package-whitelist/issues/588
-    # - genisoimage
 env:
   global:
   - DMG=/tmp/libdmg-hfsplus/build/dmg/dmg

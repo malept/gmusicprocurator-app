@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=GMusicProcurator
+GenericName=Audio player
+Comment=Play music from the Google Play Music streaming service
+Icon=gmusicprocurator
+Exec=/opt/gmusicprocurator-app/GMusicProcurator
+Terminal=false
+Categories=Audio;Player;
