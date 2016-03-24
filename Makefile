@@ -42,7 +42,15 @@ FPM_DEB = $(FPM) -t deb \
 	--depends libasound2 \
 	--depends libcups2
 FPM_RPM = $(FPM) -t rpm \
-	--rpm-os linux
+	--rpm-os linux \
+	--depends libgpg-error \
+	--depends gtk2 \
+	--depends GConf2 \
+	--depends nss \
+	--depends libnotify \
+	--depends dbus-libs \
+	--depends alsa-lib \
+	--depends cups-libs
 FPM_TAR = $(FPM) -t tar
 
 DISTDIR_LINUX = $(DISTDIR)/linux
