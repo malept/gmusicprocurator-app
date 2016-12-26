@@ -1,6 +1,6 @@
-electron      = require 'electron'
+electron = require 'electron'
 
-ipc           = electron.ipcRenderer
+ipc      = electron.ipcRenderer
 
 ipc.on 'player', (_event, message) ->
   player = window.AlpacAudio.player

@@ -1,46 +1,45 @@
-electron        = require 'electron'
+electron       = require 'electron'
 
-app             = electron.app
-BrowserWindow   = electron.BrowserWindow
-global_shortcut = electron.globalShortcut
-NativeImage     = require 'native-image'
+globalShortcut = electron.globalShortcut
 
 main_window = null
 
-app.on 'window-all-closed', ->
-  app.quit() unless process.platform is 'darwin'
+electron.app.on 'window-all-closed', ->
+  electron.app.quit() unless process.platform is 'darwin'
 
-app.on 'ready', ->
-  icon = NativeImage.createFromPath("#{__dirname}/icon-48.png")
-  options =
-    icon: icon
+electron.app.on 'ready', ->
+  main_window = new electron.BrowserWindow
+    icon: "#{__dirname}/icon-48.png"
+    show: false
     width: 1280
     height: 720
-    preload: "#{__dirname}/preload.js",
-    'node-integration': false
-  main_window = new BrowserWindow(options)
+    webPreferences:
+      nodeIntegration: false
+      preload: "#{__dirname}/preload.js"
 
-  wants_dev_tools = -> process.argv.indexOf('--dev-tools') isnt -1
+  main_window.on 'ready-to-show', ->
+    main_window.show()
+    if process.env.hasOwnProperty('GMP_DEV_TOOLS')
+      main_window.openDevTools(detach: true)
 
   main_window.loadURL('http://localhost:5000/')
-  main_window.openDevTools(detach: true) if wants_dev_tools()
 
   # Media keys
-  global_shortcut.register 'VolumeUp', ->
+  globalShortcut.register 'VolumeUp', ->
     main_window.webContents.send 'volume', 'up'
-  global_shortcut.register 'VolumeDown', ->
+  globalShortcut.register 'VolumeDown', ->
     main_window.webContents.send 'volume', 'down'
-  global_shortcut.register 'VolumeMute', ->
+  globalShortcut.register 'VolumeMute', ->
     main_window.webContents.send 'volume', 'mute'
-  global_shortcut.register 'MediaStop', ->
+  globalShortcut.register 'MediaStop', ->
     main_window.webContents.send 'player', 'stop'
-  global_shortcut.register 'MediaPlayPause', ->
+  globalShortcut.register 'MediaPlayPause', ->
     main_window.webContents.send 'player', 'playpause'
-  global_shortcut.register 'MediaPreviousTrack', ->
+  globalShortcut.register 'MediaPreviousTrack', ->
     main_window.webContents.send 'player', 'previous'
-  global_shortcut.register 'MediaNextTrack', ->
+  globalShortcut.register 'MediaNextTrack', ->
     main_window.webContents.send 'player', 'next'
 
   main_window.on 'closed', ->
-    global_shortcut.unregisterAll()
+    globalShortcut.unregisterAll()
     main_window = null
