@@ -10,7 +10,7 @@ services:
 - docker
 
 cache:
-- directories:
+  directories:
   - node_modules
   - $HOME/.electron
 
