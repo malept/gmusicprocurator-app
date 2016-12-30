@@ -1,7 +1,7 @@
 DISTDIR ?= out
 ICNS_FILE = src/icon.icns
 ICO_FILE = src/icon.ico
-PNG_SIZES = 512 256 128 48 32
+PNG_SIZES = 512 256 128 64 48 32
 GENERATED_PNG_FILES = $(foreach size,$(PNG_SIZES),src/icon-$(size).png)
 PNG_FILES = $(GENERATED_PNG_FILES) src/icon-16.png
 APP_ICON_FILE = src/icon-48.png
