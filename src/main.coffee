@@ -19,7 +19,7 @@ electron.app.on 'ready', ->
 
   main_window.on 'ready-to-show', ->
     main_window.show()
-    if process.env.hasOwnProperty('GMP_DEV_TOOLS')
+    if process.argv.includes('--dev-tools')
       main_window.openDevTools(detach: true)
 
   main_window.loadURL('http://localhost:5000/')
