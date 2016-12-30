@@ -5,14 +5,10 @@ PNG_SIZES = 512 256 128 48 32
 GENERATED_PNG_FILES = $(foreach size,$(PNG_SIZES),src/icon-$(size).png)
 PNG_FILES = $(GENERATED_PNG_FILES) src/icon-16.png
 APP_ICON_FILE = src/icon-48.png
-JS_FILES = $(patsubst %.coffee,%.js,$(shell ls src/*.coffee))
 
 all: installer
 
-clean: clean-dist clean-coffee clean-icns clean-ico clean-png
-
-clean-coffee:
-	rm -f $(JS_FILES)
+clean: clean-dist clean-icns clean-ico clean-png
 
 clean-dist:
 	rm -rf $(DISTDIR)
@@ -45,4 +41,4 @@ $(ICO_FILE): $(PNG_FILES)
 		png2icns $@ $+; \
 	fi
 
-.PHONY: clean clean-coffee clean-dist clean-icns clean-ico clean-png installer run
+.PHONY: clean clean-dist clean-icns clean-ico clean-png installer run

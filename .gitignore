@@ -1,10 +1,7 @@
-dist
 node_modules
+out/
 *.icns
 *.ico
 *.js
-*.js.map
+*.log
 *.png
-Gemfile.lock
-
-out/

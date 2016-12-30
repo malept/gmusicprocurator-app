@@ -15,7 +15,7 @@ electron.app.on 'ready', ->
     height: 720
     webPreferences:
       nodeIntegration: false
-      preload: "#{__dirname}/preload.js"
+      preload: "#{__dirname}/preload-launcher.js"
 
   main_window.on 'ready-to-show', ->
     main_window.show()

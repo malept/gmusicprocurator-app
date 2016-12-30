@@ -15,20 +15,17 @@
   },
   "devDependencies": {
     "babel-preset-stage-0": "^6.16.0",
-    "coffee-script": "^1.12.2",
     "coffeelint": "^1.16.0",
-    "electron-forge": "^1.0.1",
+    "electron-forge": "^2.2.0",
     "electron-prebuilt-compile": "1.4.12"
   },
   "engines": {
     "node": ">= 6.0"
   },
   "scripts": {
-    "build": "coffee -c -M src/preload.coffee",
     "lint": "coffeelint src",
-    "package": "npm run lint && npm run build && electron-forge make --arch all",
-    "start": "npm run build && electron-forge start",
-    "watch": "coffee -c -M -w src/preload.coffee"
+    "package": "npm run lint && electron-forge make --arch all",
+    "start": "electron-forge start"
   },
   "config": {
     "forge": "forge.config.js"
