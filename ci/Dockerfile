@@ -1,6 +1,6 @@
 FROM malept/electron-forge-container:latest
 
-RUN apt install -y icoutils icnsutils && \
+RUN apt install -y librsvg2-bin icoutils icnsutils && \
     rm -r /var/cache/apt/archives
 
 RUN flatpak remote-add --from gnome https://sdk.gnome.org/gnome.flatpakrepo && \
