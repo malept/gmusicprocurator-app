@@ -25,7 +25,7 @@ module.exports = {
     linux: [
       'deb',
       'rpm',
-      'flatpak',
+      // 'flatpak',
       'zip'
     ]
   },
