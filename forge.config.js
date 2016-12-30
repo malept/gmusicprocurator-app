@@ -24,9 +24,9 @@ module.exports = {
     ],
     linux: [
       'deb',
-      // 'rpm',
-      // 'flatpak',
-      // 'zip'
+      'rpm',
+      'flatpak',
+      'zip'
     ]
   },
   electronPackagerConfig: {
