@@ -30,7 +30,8 @@ module.exports = {
     ]
   },
   electronPackagerConfig: {
-    'build-version': `${package.version}.${gitRevisionTimestamp}`
+    'build-version': `${package.version}.${gitRevisionTimestamp}`,
+    ignore: ['/electron-packager']
   },
   electronWinstallerConfig: {
     name: 'GMusicProcurator'
