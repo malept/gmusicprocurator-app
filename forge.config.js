@@ -5,7 +5,7 @@ const gitRevisionTimestamp = child_process.spawnSync('git', ['show', '--format="
 
 function debianIcons() {
   let icons = {}
-  for (size of [48, 64, 128, 256]) {
+  for (size of [48, 128, 256]) {
     icons[`${size}x${size}`] = `src/icon-${size}.png`
   }
 
