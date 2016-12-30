@@ -17,17 +17,29 @@
     "babel-preset-stage-0": "^6.16.0",
     "coffeelint": "^1.16.0",
     "electron-forge": "^2.2.0",
-    "electron-prebuilt-compile": "1.4.12"
+    "electron-prebuilt-compile": "1.4.12",
+    "eslint": "^3.12.2",
+    "eslint-plugin-import": "^2.2.0"
   },
   "engines": {
     "node": ">= 6.0"
   },
   "scripts": {
-    "lint": "coffeelint src",
+    "lint": "coffeelint src && eslint forge.config.js src/preload-launcher.js",
     "package": "npm run lint && electron-forge make --arch all",
     "start": "electron-forge start"
   },
   "config": {
     "forge": "forge.config.js"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "node": true
+    },
+    "installedESLint": true,
+    "plugins": [
+      "import"
+    ]
   }
 }
