@@ -15,8 +15,8 @@ Building
 --------
 
 1. Install librsvg (specifically on Debian/Ubuntu, ``librsvg2-bin``).
-2. On OSX, install ``makeicns`` (e.g, via Homebrew). On other OSes, install
-   ``icnsutils`` (specifically, the package that installs ``png2icns``).
+2. Install ``icnsutils`` (specifically, the package that installs ``png2icns``
+   - on macOS, it's named ``libicns`` in Homebrew).
 3. To build for Windows, install ``icoutils`` (which generates the icon for the
    Windows binary).
 4. To build for Windows on a non-Windows build machine, install ``wine``, to

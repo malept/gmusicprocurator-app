@@ -35,10 +35,6 @@ $(ICO_FILE): $(PNG_FILES)
 	icotool -c -o $@ $+
 
 %.icns: $(PNG_FILES)
-	if test "$(shell uname -s)" = "Darwin"; then \
-		makeicns $(foreach size,$(PNG_SIZES),-$(size) src/icon-$(size).png ) -out $@; \
-	else \
-		png2icns $@ $+; \
-	fi
+	png2icns $@ $+
 
 .PHONY: clean clean-dist clean-icns clean-ico clean-png installer run

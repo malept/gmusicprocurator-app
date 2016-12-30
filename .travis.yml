@@ -15,6 +15,6 @@ cache:
   - $HOME/.electron
 
 before_install:
-- if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then brew install icoutils librsvg makeicns; fi
+- if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then brew install icoutils libicns librsvg; fi
 
 script: ci/script.sh
