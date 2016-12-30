@@ -1,7 +1,7 @@
 const child_process = require('child_process');
 
 const package = require('./package.json');
-const gitRevisionTimestamp = child_process.spawnSync('git', ['show', '--format=%at', '-q'], {encoding: 'utf8').stdout.trim();
+const gitRevisionTimestamp = child_process.spawnSync('git', ['show', '--format=%at', '-q'], {encoding: 'utf8'}).stdout.trim();
 
 function debianIcons() {
   let icons = {};
