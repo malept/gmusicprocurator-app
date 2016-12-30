@@ -14,4 +14,7 @@ cache:
   - node_modules
   - $HOME/.electron
 
+before_install:
+- if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then brew install librsvg; fi
+
 script: ci/script.sh
