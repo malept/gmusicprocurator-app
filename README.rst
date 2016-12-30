@@ -23,11 +23,10 @@ Building
    properly modify the Windows binaries.
 5. Install `GNU Make`_ if it's not already on your system.
 6. Clone this Git repository.
-7. Run ``npm install``.
-8. Build the app for your OS and architecture, see the ``Makefile`` for the
-   specific target. For example, for Linux on a 64 bit architecture, run
-   ``make dist-linux-x64``. If you run ``make`` without a target, distributions
-   for all supported OSes will be built.
+7. Run ``npm install``. (Yarn does not work on Linux/Windows because of problems
+   with optional, OS-specific dependencies.)
+8. Build the app for your OS via ``make``. You could try to build for the
+   non-host OSes, but it's not recommended.
 
 Running
 -------
