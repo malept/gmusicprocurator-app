@@ -1,0 +1,8 @@
+{
+  "application/javascript": {
+    "passthrough": true
+  },
+  "text/coffeescript": {
+    "header": false
+  }
+}

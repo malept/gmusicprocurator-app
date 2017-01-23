@@ -1,29 +1,20 @@
 language: node_js
-node_js: "5"
-sudo: false
+node_js: "6"
+sudo: required
+os:
+- linux
+- osx
+dist: trusty
+osx_image: xcode8.2
+services:
+- docker
+
 cache:
-- apt
-- bundler
-- directories:
+  directories:
   - node_modules
   - $HOME/.electron
-addons:
-  apt:
-    packages:
-    # Blocked by https://github.com/travis-ci/apt-package-whitelist/issues/588
-    # Handled in ci/before_install.sh + env.global in the meantime
-    # - genisoimage
-    - icoutils
-    - icnsutils
-    - rpm
-    - nsis
-    - wine
-env:
-  global:
-  - DMG=/tmp/libdmg-hfsplus/build/dmg/dmg
-  - GENISOIMAGE=/tmp/genisoimage/usr/bin/genisoimage
 
-before_install: ci/before_install.sh
+before_install:
+- if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then brew install icoutils libicns librsvg; fi
 
-script:
-- make
+script: ci/script.sh

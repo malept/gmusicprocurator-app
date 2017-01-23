@@ -1,22 +1,45 @@
 {
-  "name": "gmusicprocurator-app",
+  "name": "gmusicprocurator",
   "productName": "GMusicProcurator",
   "version": "0.0.1",
   "description": "Desktop integration app for GMusicProcurator",
+  "productDescription": "Play music from the Google Play Music streaming service",
   "repository": "malept/gmusicprocurator-app",
   "homepage": "https://github.com/malept/gmusicprocurator-app#readme",
   "author": "Mark Lee",
   "license": "GPL-3.0+",
-  "main": "src/main.js",
+  "main": "src/main.coffee",
   "private": true,
+  "dependencies": {
+    "electron-compile": "^5.0.0"
+  },
   "devDependencies": {
-    "coffee-script": "^1.9.2",
-    "coffeelint": "^1.10.0",
-    "electron-builder": "^2.0.2",
-    "electron-packager": "^5.2.0, >= 5.2.1",
-    "electron-prebuilt": "^0.36.0"
+    "babel-preset-stage-0": "^6.16.0",
+    "coffeelint": "^1.16.0",
+    "electron-forge": "^2.2.0",
+    "electron-prebuilt-compile": "1.4.12",
+    "eslint": "^3.12.2",
+    "eslint-plugin-import": "^2.2.0"
   },
   "engines": {
-    "node": ">=4.0"
+    "node": ">= 6.0"
+  },
+  "scripts": {
+    "lint": "coffeelint src && eslint forge.config.js src/preload-launcher.js",
+    "package": "npm run lint && electron-forge make --arch all",
+    "start": "electron-forge start"
+  },
+  "config": {
+    "forge": "forge.config.js"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "node": true
+    },
+    "installedESLint": true,
+    "plugins": [
+      "import"
+    ]
   }
 }
