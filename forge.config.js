@@ -28,7 +28,8 @@ module.exports = {
     linux: [
       'deb',
       'rpm',
-      'flatpak',
+      // Disabled until https://github.com/flatpak/flatpak/commit/ee83b5a is released
+      // 'flatpak',
       'zip'
     ]
   },
