@@ -1,6 +1,6 @@
 FROM malept/electron-forge-container:latest
 
-ENV CI=true
+ENV CI=true DEBUG=flatpak-bundler
 
 RUN apt install --no-install-recommends -y librsvg2-bin icoutils icnsutils && \
     rm -r /var/cache/apt/archives
