@@ -38,10 +38,11 @@ module.exports = {
     ignore: ['/electron-packager']
   },
   electronWinstallerConfig: {
-    name: 'GMusicProcurator'
+    name: package.productName
   },
   electronInstallerDebian: Object.assign({
     arch: 'any',
+    bin: package.productName,
     section: 'sound'
   }, linuxConfig),
   electronInstallerFlatpak: Object.assign({
