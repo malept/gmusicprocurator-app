@@ -34,8 +34,7 @@ module.exports = {
   },
   electronPackagerConfig: {
     'build-version': `${package.version}.${gitRevisionTimestamp}`,
-    icon: 'src/icon',
-    ignore: ['/electron-packager']
+    icon: 'src/icon'
   },
   electronWinstallerConfig: {
     name: package.productName
