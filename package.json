@@ -11,7 +11,7 @@
   "main": "src/main.coffee",
   "private": true,
   "dependencies": {
-    "electron-compile": "^5.0.0"
+    "electron-compile": "^6.0.0"
   },
   "devDependencies": {
     "babel-preset-stage-0": "^6.16.0",
