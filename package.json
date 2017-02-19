@@ -25,7 +25,7 @@
     "node": ">= 6.0"
   },
   "scripts": {
-    "lint": "coffeelint src && eslint forge.config.js src/preload-launcher.js",
+    "lint": "coffeelint src && eslint forge.config.js ci/cache-prebuilt-electron.js src/preload-launcher.js",
     "package": "npm run lint && electron-forge make --arch all",
     "start": "electron-forge start"
   },

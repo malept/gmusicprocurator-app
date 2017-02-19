@@ -1,4 +1,5 @@
 const child_process = require('child_process');
+const path = require('path');
 
 const package = require('./package.json');
 const gitRevisionTimestamp = child_process.spawnSync('git', ['show', '--format=%at', '-q'], {encoding: 'utf8'}).stdout.trim();
@@ -14,6 +15,18 @@ const linuxConfig = {
   categories: categories,
   icon: icons
 };
+
+let packagerConfig = {
+  'build-version': `${package.version}.${gitRevisionTimestamp}`,
+  icon: 'src/icon'
+};
+
+if (process.env.CI && process.env.TRAVIS_OS_NAME != 'osx') {
+  packagerConfig.download = {
+    cache: path.resolve(__dirname, '.electron')
+  }
+  packagerConfig.ignore = ['\.electron']
+}
 
 module.exports = {
   make_targets: {
@@ -32,10 +45,7 @@ module.exports = {
       'zip'
     ]
   },
-  electronPackagerConfig: {
-    'build-version': `${package.version}.${gitRevisionTimestamp}`,
-    icon: 'src/icon'
-  },
+  electronPackagerConfig: packagerConfig,
   electronWinstallerConfig: {
     name: package.productName
   },

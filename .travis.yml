@@ -13,8 +13,12 @@ cache:
   directories:
   - node_modules
   - $HOME/.electron
+  - $TRAVIS_BUILD_DIR/.electron
 
 before_install:
 - if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then brew install icoutils libicns librsvg; fi
+
+before_script:
+- if [[ "$TRAVIS_OS_NAME" = "linux" ]]; then node ci/cache-prebuilt-electron.js; fi
 
 script: ci/script.sh
