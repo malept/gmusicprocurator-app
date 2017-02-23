@@ -8,6 +8,10 @@ dist: trusty
 osx_image: xcode8.2
 services:
 - docker
+addons:
+  apt:
+    packages:
+    - libavahi-compat-libdnssd-dev
 
 cache:
   directories:
