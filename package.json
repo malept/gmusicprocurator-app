@@ -11,6 +11,7 @@
   "main": "src/main.coffee",
   "private": true,
   "dependencies": {
+    "electron-chromecast": "^1.0.18",
     "electron-compile": "^6.0.0"
   },
   "devDependencies": {
