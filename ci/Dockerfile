@@ -4,7 +4,7 @@ ENV CI=true
 
 RUN dpkg --add-architecture armhf && \
     dpkg --add-architecture i386 && \
-    echo "deb [arch=armhf] http://ports.ubuntu.com/ xenial main universe" > /etc/apt/sources.list.d/armhf.list &&
+    echo "deb [arch=armhf] http://ports.ubuntu.com/ xenial main universe" > /etc/apt/sources.list.d/armhf.list && \
     apt update && \
     apt install --no-install-recommends -y libavahi-compat-libdnssd-dev:i386 libavahi-compat-libdnssd-dev:armhf
 RUN apt install --no-install-recommends -y librsvg2-bin icoutils icnsutils && \
