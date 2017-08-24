@@ -16,7 +16,7 @@
   "devDependencies": {
     "babel-preset-stage-0": "^6.16.0",
     "coffeelint": "^1.16.0",
-    "electron-forge": "^2.2.0",
+    "electron-forge": "^3.2.0",
     "electron-prebuilt-compile": "1.4.12",
     "eslint": "^3.12.2",
     "eslint-plugin-import": "^2.2.0"
