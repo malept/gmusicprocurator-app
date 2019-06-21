@@ -18,8 +18,8 @@
     "coffeelint": "^1.16.0",
     "electron-forge": "^3.2.0",
     "electron-prebuilt-compile": "1.4.12",
-    "eslint": "^3.12.2",
-    "eslint-plugin-import": "^2.2.0"
+    "eslint": "^5.0.0",
+    "eslint-plugin-import": "^2.17.3"
   },
   "engines": {
     "node": ">= 6.0"
